@@ -6,8 +6,9 @@
 
 
 - _Elastic MapReduce_ is a managed clustered platform to run big data frameworks
-    
-	![[Screenshot 2025-01-04 at 09.47.59.png]]
+<img width="1494" alt="Screenshot 2025-01-04 at 09 47 59" src="https://github.com/user-attachments/assets/95d53f1e-cbf9-40c0-8148-1004397d2ef3" />
+
+
     
     - Over 21 different frameworks available!
     - They are “out of box”, pre-installed
@@ -23,7 +24,7 @@
 - By default, EMR uses YARN (Yet Another Resource Negotiator) for Cluster resource management
     
     - Consists of **Resource Manager** and **Node Managers** to coordinate job scheduling
-    ![[Screenshot 2023-08-27 at 2.06.43 PM.png]]
+   <img width="518" alt="Screenshot 2023-08-27 at 2 06 43 PM" src="https://github.com/user-attachments/assets/7467629d-ef18-49d8-b039-3b951107f268" />
 
     
     YARN was introduced in Apache Hadoop 2.0 to help with cluster management
@@ -33,19 +34,22 @@
 
 There exists many AWS Services that integrate with EMR. The biggest ones to know are
 
-![[Simple Storage Service.png]]
+![Simple Storage Service](https://github.com/user-attachments/assets/10417a8e-d757-4c7c-a2b8-d1e00cad19c4)
+
 
 - **Amazon S3**
 	- Acts as the persistent data store.
     - Decouple storage and compute. Avoids “cold data”
     -  EMRFS (EMR File System) enables seamless writing to S3.
-![[EC2.png]]
+![EC2](https://github.com/user-attachments/assets/feb629d4-03ea-4a0f-9760-cbde6433431e)
+
 - **Amazon EC2**
     - Provision virtual machines for our worker nodes
     - Choose from various instance types (e.g., m5 for general processing, c5 for ML tasks, x1 for memory-intensive operations).
     - Fleet instances allow you to mix and match on-demand, spot, reserved instances
 
-![[Virtual Private Cloud.png]]
+![Virtual Private Cloud](https://github.com/user-attachments/assets/22bbfbbc-7ab6-4903-b442-e1fb1006b467)
+
 
 - **Amazon VPC**
     - Secure your networking environment
@@ -72,8 +76,8 @@ An EMR cluster comprises three node types:
 3. **Task Node** (optional):
     
     - Executes tasks but does not store data.
+<img width="303" alt="Screenshot 2023-08-26 at 1 24 11 PM" src="https://github.com/user-attachments/assets/8d926907-2ac6-43d4-a80a-78383663cfe7" />
 
-![[Screenshot 2023-08-26 at 1.24.11 PM.png]]
 An EMR cluster consists of a primary node, core nodes and task nodes (optional).
 
 EMR clusters are _**Elastic**_
@@ -82,7 +86,8 @@ EMR clusters are _**Elastic**_
 - EMR managed scaling allows you to set minimum/maximum cluster size
     - 💡 Pro tip: set number of on-demand instances for critical tasks, then provision the rest as spot instances
 
-![[Screenshot 2023-08-26 at 2.27.16 PM.png]]
+<img width="748" alt="Screenshot 2023-08-26 at 2 27 16 PM" src="https://github.com/user-attachments/assets/887d86d0-3e38-4c73-9832-958201cc458b" />
+
 
 example of EMR managed auto-scaling interface
 
