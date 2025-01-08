@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .results li {
+            background: white;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Movie Recommendation System</h1>
+    </header>
+
+    <form id="recommendationForm">
+        <label for="movieName">Enter Movie Name:</label>
+        <input type="text" id="movieName" name="movieName" placeholder="Movie Name" required>
+        <button type="submit">Get Recommendations</button>
+    </form>
+
+    <div class="results" id="results">
+        <h2>Recommendations:</h2>
+        <ul id="recommendationList"></ul>
+    </div>
+
+    <script>
+        const form = document.getElementById('recommendationForm');
+        const results = document.getElementById('results');
+        const recommendationList = document.getElementById('recommendationList');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const movieName = document.getElementById('movieName').value;
+
+            // Clear previous results
+            recommendationList.innerHTML = '';
+
+            try {
+                const response = await fetch(`http://127.0.0.1:5000/recommend?movie_name=${encodeURIComponent(movieName)}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch recommendations');
+                }
+
+                const data = await response.json();
+
+                if (data.error) {
+                    recommendationList.innerHTML = `<li>${data.error}</li>`;
+                } else {
+                    data.recommended_movies.forEach((movie) => {
+                        const li = document.createElement('li');
+                        li.textContent = `Title: ${movie.title} (ID: ${movie.movieId})`;
+                        recommendationList.appendChild(li);
+                    });
+                }
+            } catch (error) {
+                recommendationList.innerHTML = `<li>Error: ${error.message}</li>`;
+            }
+        });
+    </script>
+</body>
+
+</html>
